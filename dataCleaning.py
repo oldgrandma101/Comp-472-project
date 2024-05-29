@@ -62,19 +62,12 @@ clean_happy_images=clean_images(original_happy_images)
 export_images("./new_happy",clean_happy_images)
 clean_happy_labels=label_images(clean_happy_images,happy_label)
 
-#convert lists containing images and labels into numpy arrays
-array_of_clean_happy_images=np.array(clean_happy_images)
-array_of_clean_happy_labels=np.array(clean_happy_labels)
-
 #import, process and then export angry images
 original_angry_images=import_images("./angry")
 clean_angry_images=clean_images(original_angry_images)
 export_images("./new_angry",clean_angry_images)
 clean_angry_labels=label_images(clean_angry_images,angry_label)
 
-#convert lists containing images and labels into numpy arrays
-array_of_clean_angry_images=np.array(clean_angry_images)
-array_of_clean_angry_labels=np.array(clean_angry_labels)
 
 #import, process and then export neutral images
 original_neutral_images=import_images("./neutral")
@@ -82,24 +75,23 @@ clean_neutral_images=clean_images(original_neutral_images)
 export_images("./new_neutral",clean_neutral_images)
 clean_neutral_labels=label_images(clean_neutral_images,neutral_label)
 
+
+#************************************
+#************************************
+#Caspar and Jonny, I think you guys are going to need the numpy arays that I made below this comment
+#in your data_visualization.py file, I'm not done yet though I still have to find a focused dataset
+#and add pictures of us to the dataset
+
+
+
+#convert lists containing images and labels into numpy arrays
+array_of_clean_happy_images=np.array(clean_happy_images)
+array_of_clean_happy_labels=np.array(clean_happy_labels)
+
+#convert lists containing images and labels into numpy arrays
+array_of_clean_angry_images=np.array(clean_angry_images)
+array_of_clean_angry_labels=np.array(clean_angry_labels)
+
 #convert lists containing images and labels into numpy arrays
 array_of_clean_neutral_images=np.array(clean_neutral_images)
 array_of_clean_neutral_labels=np.array(clean_neutral_labels)
-
-
-
-
-#*************************************
-#*************************************
-#making sure same number of images and labels
-# label_counter=0
-# for x in clean_happy_labels:
-#     print(x)
-#     label_counter+=1
-#
-# image_counter=0
-# for x in clean_happy_images:
-#     image_counter+=1
-#
-# print (image_counter)
-# print(label_counter)
