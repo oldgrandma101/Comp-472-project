@@ -17,7 +17,6 @@ def import_images(folder_path):
             with Image.open(os.path.join(folder_path, filename)) as img:
                 original_images.append(img.copy())
 
-
     return original_images
 
 def clean_images(list_of_dirty_pictures):
