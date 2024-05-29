@@ -7,8 +7,9 @@ def import_images(folder_path):
     original_images = []
     for filename in os.listdir(folder_path):
         if filename.endswith('.jpg'):
-            img = Image.open(os.path.join(folder_path, filename))
-            original_images.append(img)
+            with Image.open(os.path.join(folder_path, filename)) as img:
+                original_images.append(img.copy())
+
 
     return original_images
 
