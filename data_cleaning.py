@@ -123,8 +123,7 @@ final_list_of_all_labels = list_angry_labels + list_happy_labels + list_neutral_
 #************************************
 #************************************
 #Caspar and Jonny, I think you guys are going to need the numpy arays that I made below this comment
-#in your data_visualization.py file, I'm not done yet though I still have to find a focused dataset
-#and add pictures of us to the dataset
+#in your data_visualization.py file
 
 #these are numpy arrays of each emotion that store each image as a numpy array which stores the pixel values
 array_of_angry = np.array(angry_images_as_array)
