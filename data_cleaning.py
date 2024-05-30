@@ -145,21 +145,21 @@ focused_images_as_array = convert_images_to_numpy_array(list_final_focused)
 final_list_of_all_images = angry_images_as_array + happy_images_as_array + neutral_images_as_array+focused_images_as_array
 final_list_of_all_labels = list_angry_labels + list_happy_labels + list_neutral_labels+list_focused_labels
 
-<<<<<<< HEAD
+
 # #************************************
 # #************************************
 # #Caspar and Jonny, I think you guys are going to need the numpy arrays that I made below this comment
 # #in your data_visualization.py file
 #
 # #these are numpy arrays of each emotion that store each image as a numpy array which stores the pixel values
-=======
+
 #************************************
 #************************************
 #Caspar and Jonny, I think you guys are going to need the numpy arays that I made below this comment
 #in your data_visualization.py file
 
 #these are numpy arrays of each emotion that store each image as a numpy array which stores the pixel values
->>>>>>> origin/Anthony
+
 array_of_angry = np.array(angry_images_as_array)
 array_of_happy = np.array(happy_images_as_array)
 array_of_neutral = np.array(neutral_images_as_array)
