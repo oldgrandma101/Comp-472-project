@@ -1,3 +1,19 @@
+#**************************************
+#**************************************
+#parts of this code was implemented using chatGPT
+#the lines of code where chatGPT was used has a comment saying chatGPT was used
+
+
+#*************************************
+#*************************************
+#this file was used to create the final_dataset folder which contains the images chosen for this project
+#the images were chosen randomly
+#PLEASE DON'T RUN THIS FILE BECAUSE IT WILL CREATE A NEW FINAL DATASET WITH DIFFERENT IMAGES
+
+
+
+
+
 from PIL import Image,ImageEnhance
 import os
 import numpy as np
