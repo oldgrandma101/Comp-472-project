@@ -12,7 +12,7 @@ focused_label=3
 happy_label=4
 image_counter=0
 
-def select_random_images(src_folder, dst_folder, num_images=500):
+def select_random_images(src_folder, dst_folder, num_images):
     os.makedirs(dst_folder, exist_ok=True)
     all_files = os.listdir(src_folder)
     selected_files = random.sample(all_files, num_images)
@@ -77,10 +77,10 @@ def convert_images_to_numpy_array(list_of_images_to_convert):
 
 #***********************************
 #choose 500 random images and save them
-select_random_images("./focused","./random_focused")
-select_random_images("./angry","./random_angry")
-select_random_images("./happy","./random_happy")
-select_random_images("./neutral","./random_neutral")
+select_random_images("./focused","./random_focused",500)
+select_random_images("./angry","./random_angry",500)
+select_random_images("./happy","./random_happy",500)
+select_random_images("./neutral","./random_neutral",500)
 
 
 
@@ -127,6 +127,12 @@ list_final_angry=import_images("./Final_dataset/final_angry")
 list_final_happy=import_images("./Final_dataset/final_happy")
 list_final_neutral=import_images("./Final_dataset/final_neutral")
 list_final_focused=import_images("./Final_dataset/final_focused")
+
+# save a 25 image sample from each class to upload on moodle
+select_random_images("./Final_dataset/final_angry","./Samples/angry",25)
+select_random_images("./Final_dataset/final_happy","./Samples/happy",25)
+select_random_images("./Final_dataset/final_neutral","./Samples/neutral",25)
+select_random_images("./Final_dataset/final_focused","./Samples/focused",25)
 
 # #lists of lables for each emotion
 list_angry_labels=label_images(list_final_angry,angry_label)
