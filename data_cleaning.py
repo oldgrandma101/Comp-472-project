@@ -65,10 +65,12 @@ def clean_images(list_of_dirty_pictures):
     return clean_pictures
 
 
-def export_images(new_folder_path, list_of_images_to_export):
+def export_images(new_folder_path, list_of_images_to_export, rgb):
     os.makedirs(new_folder_path, exist_ok=True) #chatGPT was used for this line
     global image_counter
     for img in list_of_images_to_export:
+        if rgb:
+            img = img.convert("RGB")  # ChatGPT was used for this line
         output_path = os.path.join(new_folder_path, f"new__image_{image_counter}.jpg")  #chatGPT was used for this line
         img.save(output_path)
         image_counter+=1
@@ -113,14 +115,14 @@ group_neutral=import_images("./group_neutral")
 group_engaged=import_images("./group_engaged")
 
 #make list of dirty images for each class
-dirty_happy=clean_images(fer_happy)
-dirty_angry=clean_images(fer_angry)
-dirty_neutral=clean_images(fer_neutral)
-dirty_focused=clean_images(focused)
-dirty_group_happy=clean_images(group_happy)
-dirty_group_angry=clean_images(group_angry)
-dirty_group_neutral=clean_images(group_neutral)
-dirty_group_focused=clean_images(group_engaged)
+dirty_happy=fer_happy
+dirty_angry=fer_angry
+dirty_neutral=fer_neutral
+dirty_focused=focused
+dirty_group_happy=group_happy
+dirty_group_angry=group_angry
+dirty_group_neutral=group_neutral
+dirty_group_focused=group_engaged
 
 # #make list of clean images for each class
 clean_happy=clean_images(fer_happy)
@@ -146,18 +148,18 @@ clean_group_neutral += clean_neutral
 clean_group_focused += clean_focused
 
 # #save the images in the dirty list to save dataset for project
-export_images("./Final_dirty_dataset/dirty_happy",dirty_group_happy)
-export_images("./Final_dirty_dataset/dirty_angry",dirty_group_angry)
-export_images("./Final_dirty_dataset/dirty_neutral",dirty_group_neutral)
-export_images("./Final_dirty_dataset/dirty_focused",dirty_group_focused)
+export_images("./Final_dirty_dataset/dirty_happy",dirty_group_happy,True)
+export_images("./Final_dirty_dataset/dirty_angry",dirty_group_angry,True)
+export_images("./Final_dirty_dataset/dirty_neutral",dirty_group_neutral,True)
+export_images("./Final_dirty_dataset/dirty_focused",dirty_group_focused,True)
 
 
 
 # #save the images in the clean list to save dataset for project
-export_images("./Final_clean_dataset/final_happy",clean_group_happy)
-export_images("./Final_clean_dataset/final_angry",clean_group_angry)
-export_images("./Final_clean_dataset/final_neutral",clean_group_neutral)
-export_images("./Final_clean_dataset/final_focused",clean_group_focused)
+export_images("./Final_clean_dataset/final_happy",clean_group_happy, False)
+export_images("./Final_clean_dataset/final_angry",clean_group_angry, False)
+export_images("./Final_clean_dataset/final_neutral",clean_group_neutral, False)
+export_images("./Final_clean_dataset/final_focused",clean_group_focused, False)
 
 
 
