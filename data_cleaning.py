@@ -8,7 +8,7 @@
 #*************************************
 #this file was used to create the final_dataset folder which contains the images chosen for this project
 #the images were chosen randomly
-#PLEASE DON'T RUN THIS FILE BECAUSE IT WILL CREATE A NEW FINAL DATASET WITH DIFFERENT IMAGES
+
 
 
 
