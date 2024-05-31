@@ -13,14 +13,14 @@ happy_label=4
 image_counter=0
 
 def select_random_images(src_folder, dst_folder, num_images):
-    os.makedirs(dst_folder, exist_ok=True)
-    all_files = os.listdir(src_folder)
+    os.makedirs(dst_folder, exist_ok=True)  #chatGPT was used for this line
+    all_files = os.listdir(src_folder)  #chatGPT was used for this line
     selected_files = random.sample(all_files, num_images)
-    # Copy the selected files to the destination folder
+
     for file_name in selected_files:
-        src_file_path = os.path.join(src_folder, file_name)
-        dst_file_path = os.path.join(dst_folder, file_name)
-        shutil.copy(src_file_path, dst_file_path)
+        src_file_path = os.path.join(src_folder, file_name) #chatGPT was used for this line
+        dst_file_path = os.path.join(dst_folder, file_name) #chatGPT was used for this line
+        shutil.copy(src_file_path, dst_file_path)   #chatGPT was used for this line
     return
 
 
@@ -31,8 +31,8 @@ def import_images(folder_path):
         if (import_counter==510):
             return original_images
         if filename.endswith('.jpg'):
-            with Image.open(os.path.join(folder_path, filename)) as img:
-                original_images.append(img.copy())
+            with Image.open(os.path.join(folder_path, filename)) as img:    #chatGPT was used for this line
+                original_images.append(img.copy())                          #chatGPT was used for this line
                 import_counter+=1
 
     return original_images
@@ -41,19 +41,19 @@ def clean_images(list_of_dirty_pictures):
     clean_pictures=[]
     for img in list_of_dirty_pictures:
         resized_image = img.resize(new_size)
-        enhancer = ImageEnhance.Brightness(resized_image)
-        brighter_image = enhancer.enhance(new_brightness)
-        greyscale_image = brighter_image.convert("L")
+        enhancer = ImageEnhance.Brightness(resized_image)   #chatGPT was used for this line
+        brighter_image = enhancer.enhance(new_brightness)   #chatGPT was used for this line
+        greyscale_image = brighter_image.convert("L")       #chatGPT was used for this line
         clean_pictures.append(greyscale_image)
 
     return clean_pictures
 
 
 def export_images(new_folder_path, list_of_images_to_export):
-    os.makedirs(new_folder_path, exist_ok=True)
+    os.makedirs(new_folder_path, exist_ok=True) #chatGPT was used for this line
     global image_counter
     for img in list_of_images_to_export:
-        output_path = os.path.join(new_folder_path, f"new__image_{image_counter}.jpg")
+        output_path = os.path.join(new_folder_path, f"new__image_{image_counter}.jpg")  #chatGPT was used for this line
         img.save(output_path)
         image_counter+=1
 
