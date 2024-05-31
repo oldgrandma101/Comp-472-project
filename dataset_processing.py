@@ -12,16 +12,16 @@ from data_cleaning import happy_label
 
 
 # #import final datsets to be used for project
-list_final_angry=import_images("./Final_dataset/final_angry")
-list_final_happy=import_images("./Final_dataset/final_happy")
-list_final_neutral=import_images("./Final_dataset/final_neutral")
-list_final_focused=import_images("./Final_dataset/final_focused")
+list_final_angry=import_images("./Final_clean_dataset/final_angry")
+list_final_happy=import_images("./Final_clean_dataset/final_happy")
+list_final_neutral=import_images("./Final_clean_dataset/final_neutral")
+list_final_focused=import_images("./Final_clean_dataset/final_focused")
 
 # save a 25 image sample from each class to upload on moodle
-select_random_images("./Final_dataset/final_angry","./Samples/angry",25)
-select_random_images("./Final_dataset/final_happy","./Samples/happy",25)
-select_random_images("./Final_dataset/final_neutral","./Samples/neutral",25)
-select_random_images("./Final_dataset/final_focused","./Samples/focused",25)
+select_random_images("./Final_clean_dataset/final_angry","./Samples/angry",25)
+select_random_images("./Final_clean_dataset/final_happy","./Samples/happy",25)
+select_random_images("./Final_clean_dataset/final_neutral","./Samples/neutral",25)
+select_random_images("./Final_clean_dataset/final_focused","./Samples/focused",25)
 
 # #lists of lables for each emotion
 list_angry_labels=label_images(list_final_angry,angry_label)
