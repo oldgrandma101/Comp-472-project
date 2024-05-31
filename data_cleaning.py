@@ -112,6 +112,16 @@ group_angry=import_images("./group_angry")
 group_neutral=import_images("./group_neutral")
 group_engaged=import_images("./group_engaged")
 
+#make list of dirty images for each class
+dirty_happy=clean_images(fer_happy)
+dirty_angry=clean_images(fer_angry)
+dirty_neutral=clean_images(fer_neutral)
+dirty_focused=clean_images(focused)
+dirty_group_happy=clean_images(group_happy)
+dirty_group_angry=clean_images(group_angry)
+dirty_group_neutral=clean_images(group_neutral)
+dirty_group_focused=clean_images(group_engaged)
+
 # #make list of clean images for each class
 clean_happy=clean_images(fer_happy)
 clean_angry=clean_images(fer_angry)
@@ -122,18 +132,32 @@ clean_group_angry=clean_images(group_angry)
 clean_group_neutral=clean_images(group_neutral)
 clean_group_focused=clean_images(group_engaged)
 
+#add dirty group pics to appropriate dirty datasets
+dirty_group_happy += dirty_happy
+dirty_group_angry += dirty_angry
+dirty_group_neutral += dirty_neutral
+dirty_group_focused += dirty_focused
 
-# #Add group pics to appropriate datasets
+
+# #Add clean group pics to appropriate  clean datasets
 clean_group_happy += clean_happy
 clean_group_angry += clean_angry
 clean_group_neutral += clean_neutral
 clean_group_focused += clean_focused
 
-# #save the images in the list to save dataset for project
-export_images("./Final_dataset/final_happy",clean_group_happy)
-export_images("./Final_dataset/final_angry",clean_group_angry)
-export_images("./Final_dataset/final_neutral",clean_group_neutral)
-export_images("./Final_dataset/final_focused",clean_group_focused)
+# #save the images in the dirty list to save dataset for project
+export_images("./Final_dirty_dataset/dirty_happy",dirty_group_happy)
+export_images("./Final_dirty_dataset/dirty_angry",dirty_group_angry)
+export_images("./Final_dirty_dataset/dirty_neutral",dirty_group_neutral)
+export_images("./Final_dirty_dataset/dirty_focused",dirty_group_focused)
+
+
+
+# #save the images in the clean list to save dataset for project
+export_images("./Final_clean_dataset/final_happy",clean_group_happy)
+export_images("./Final_clean_dataset/final_angry",clean_group_angry)
+export_images("./Final_clean_dataset/final_neutral",clean_group_neutral)
+export_images("./Final_clean_dataset/final_focused",clean_group_focused)
 
 
 
