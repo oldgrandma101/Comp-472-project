@@ -43,7 +43,7 @@ def clean_images(list_of_dirty_pictures):
         resized_image = img.resize(new_size)
         enhancer = ImageEnhance.Brightness(resized_image)
         brighter_image = enhancer.enhance(new_brightness)
-        greyscale_image = brighter_image.convert("L")  # Convert to greyscale
+        greyscale_image = brighter_image.convert("L")
         clean_pictures.append(greyscale_image)
 
     return clean_pictures
@@ -117,16 +117,16 @@ clean_group_neutral += clean_neutral
 clean_group_focused += clean_focused
 
 # #save the images in the list to save dataset for project
-export_images("./final_happy",clean_group_happy)
-export_images("./final_angry",clean_group_angry)
-export_images("./final_neutral",clean_group_neutral)
-export_images("./final_focused",clean_group_focused)
+export_images("./Final_dataset/final_happy",clean_group_happy)
+export_images("./Final_dataset/final_angry",clean_group_angry)
+export_images("./Final_dataset/final_neutral",clean_group_neutral)
+export_images("./Final_dataset/final_focused",clean_group_focused)
 
 # #import final datsets to be used for project
-list_final_angry=import_images("./final_angry")
-list_final_happy=import_images("./final_happy")
-list_final_neutral=import_images("./final_neutral")
-list_final_focused=import_images("./final_focused")
+list_final_angry=import_images("./Final_dataset/final_angry")
+list_final_happy=import_images("./Final_dataset/final_happy")
+list_final_neutral=import_images("./Final_dataset/final_neutral")
+list_final_focused=import_images("./Final_dataset/final_focused")
 
 # #lists of lables for each emotion
 list_angry_labels=label_images(list_final_angry,angry_label)
