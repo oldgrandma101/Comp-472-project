@@ -70,3 +70,31 @@ array_focused_labels = np.array(list_focused_labels)
 final_array_of_all_images = np.array(final_list_of_all_images)
 final_array_of_all_labels = np.array(final_list_of_all_labels)
 
+# added for pixel intensity diagrams below - johnny
+# feel free to move these somewhere else but to keep data_visualization running quickly I moved them here
+
+# create sample class arrays
+angry_samples = import_images("./Samples/angry")
+happy_samples = import_images("./Samples/happy")
+focused_samples = import_images("./Samples/focused")
+neutral_samples = import_images("./Samples/neutral")
+
+# convert to numpy arrays
+angry_samples_as_array = convert_images_to_numpy_array(angry_samples)
+happy_samples_as_array = convert_images_to_numpy_array(happy_samples)
+neutral_samples_as_array = convert_images_to_numpy_array(neutral_samples)
+focused_samples_as_array = convert_images_to_numpy_array(focused_samples)
+
+# create dirty image arrays
+
+angry_dirty = import_images("./Final_dirty_dataset/dirty_angry")
+happy_dirty = import_images("./Final_dirty_dataset/dirty_happy")
+neutral_dirty = import_images("./Final_dirty_dataset/dirty_neutral")
+focused_dirty = import_images("./Final_dirty_dataset/dirty_focused")
+
+# convert to numpy arrays
+
+angry_dirty_as_array = convert_images_to_numpy_array(angry_dirty)
+happy_dirty_as_array = convert_images_to_numpy_array(happy_dirty)
+neutral_dirty_as_array = convert_images_to_numpy_array(neutral_dirty)
+focused_dirty_as_array = convert_images_to_numpy_array(focused_dirty)
