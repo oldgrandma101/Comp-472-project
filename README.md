@@ -41,6 +41,8 @@ Second: Data Visualization
 1. Run the code of dataset_processing.py
    (import the clean iamges, and then covert them to numpy arrarys. And generate visualizations for class distribution and sample images.)
 
-Dependencies
+Dependencies:
+
 Language: Python
+
 matplotlib
