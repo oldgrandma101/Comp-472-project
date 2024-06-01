@@ -13,6 +13,8 @@ Contents:
 
 “visualization.py”: The file defines two functions to draw the class distribution and the sample image, then combines the labels and images of all the categories together, and finally calls these two functions to generate the corresponding chart. With these visualizations, you can visually view distributions and image examples for different categories in the dataset.
 
+"data_visualization.py": This file includes the functions responsible for calculating and plotting the pixel intensity for each class on a histogram by calling 3 different functions. These histograms depict the pixel density ranging from 0-255 for each class.
+
 Purpose of the File:
 data_cleaning.py: 
 import_images(folder_path): Imports images from the folder.
@@ -46,3 +48,7 @@ Dependencies:
 Language: Python
 
 matplotlib
+numpy
+PIL
+shutil
+
