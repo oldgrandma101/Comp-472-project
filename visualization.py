@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import numpy as np
 from dataset_processing import final_array_of_all_images, final_array_of_all_labels, array_angry_labels, array_happy_labels, array_neutral_labels, array_focused_labels
 
 # Visual class distribution
