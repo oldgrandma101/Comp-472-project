@@ -18,7 +18,7 @@ class CNN_1(nn.Module):
             nn.LeakyReLU(inplace=True),
 
             #layer 2 has 32 kernels
-            nn.Conv2d(in_channels=1, out_channels=32, kernel_size=3, padding=1, stride=1),
+            nn.Conv2d(in_channels=32, out_channels=32, kernel_size=3, padding=1, stride=1),
             nn.BatchNorm2d(32),
             nn.LeakyReLU(inplace=True),
             nn.MaxPool2d(kernel_size=2,stride=2),
