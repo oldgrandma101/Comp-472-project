@@ -79,7 +79,7 @@ def training(model, train_loader, validation_loader, criterion, optimizer, num_e
             patience_count = 0  # reset patience if a new best model is found
         else:
             patience_count += 1
-            if patience_count >= 4:  # patience of 4
+            if patience_count >= 6:  # patience of 6
                 print('Early stopping mechanism activated to avoid over fitting of the model.')
                 break
 
