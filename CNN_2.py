@@ -12,7 +12,7 @@ class CNN_2(nn.Module):
 
             # in_channels = 1 because our images are grayscale
             # layer 1 has 32 kernels
-            nn.Conv2d(in_channels=1, out_channels=32, kernel_size=3, padding=1, stride=1),
+            nn.Conv2d(in_channels=3, out_channels=32, kernel_size=3, padding=1, stride=1),
             nn.BatchNorm2d(32),
             nn.LeakyReLU(inplace=True),
 
@@ -48,7 +48,7 @@ class CNN_2(nn.Module):
         #fully connected layer
         self.fully_connected_layer = nn.Sequential(
             nn.Dropout(p=0.1),
-            nn.Linear(30*30*1024, 4)
+            nn.Linear(16*16*1024, 4)
 
         )
 

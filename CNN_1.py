@@ -13,7 +13,7 @@ class CNN_1(nn.Module):
 
             #in_channels = 1 because our images are grayscale
             #layer 1 has 32 kernels
-            nn.Conv2d(in_channels=1, out_channels=32, kernel_size=3, padding=1, stride=1),
+            nn.Conv2d(in_channels=3, out_channels=32, kernel_size=3, padding=1, stride=1),
             nn.BatchNorm2d(32),
             nn.LeakyReLU(inplace=True),
 
@@ -21,7 +21,7 @@ class CNN_1(nn.Module):
             nn.Conv2d(in_channels=32, out_channels=32, kernel_size=3, padding=1, stride=1),
             nn.BatchNorm2d(32),
             nn.LeakyReLU(inplace=True),
-            nn.MaxPool2d(kernel_size=2,stride=2),
+            nn.MaxPool2d(kernel_size=2, stride=2),
 
 
             #layer 3 has 64 kernels
@@ -72,7 +72,7 @@ class CNN_1(nn.Module):
         #fully conected layer
         self.fully_connected_layer = nn.Sequential(
             nn.Dropout(p=0.1),  #this makes 10% of all weights zero, Idea is to avoid becoming too reliant on certain connections and avoid overfitting
-            nn.Linear(7 * 7 * 256, 4)   #4 because we have 4 emotions to classify, floor(244\2^5) = 7
+            nn.Linear(4 * 4 * 256, 4)   #4 because we have 4 emotions to classify, floor(244\2^5) = 7
                                                     #because each MaxPool2D cuts the size in half
         )
 
