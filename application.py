@@ -1,6 +1,4 @@
-import os
-import random
-import shutil
+
 import torch
 from torchvision import datasets, transforms
 from torch.utils.data import DataLoader, random_split
@@ -9,7 +7,7 @@ import CNN_2
 import CNN_3
 
 
-transform = transforms.Compose([transforms.Resize((128, 128)), transforms.ToTensor(), transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])  # from ChatGPT
+transform = transforms.Compose([transforms.Resize((128, 128)), transforms.ToTensor(), transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
 #ImageFolder automatically labels all images based on folder structure
 demo_dataset = datasets.ImageFolder(root="./Final_clean_dataset", transform=transform)  # applied same transform that is applied before training
@@ -34,5 +32,25 @@ for images, labels in demo_loader:
     print("The label and class name of the image randomly selcted for demo: ")
     print("Label: ",label, "    Class Name: ", class_name)
 
-#I need to load CNN models now and predict class of demo_image
 
+def predict_class_of_image(model_class,model_path, data_loader):
+    #create and load best model
+    model = model_class()
+    model.load_state_dict(torch.load(model_path))
+    model.eval()
+
+    prediction = []
+    with torch.no_grad():
+        for images,_ in data_loader:
+            output = model(images)
+            _,predicted = torch.max(output,1)   #from ChatGPT
+            prediction.extend(predicted.numpy())    #from ChatGPT
+    return prediction
+
+
+predictions_CNN1 = predict_class_of_image(CNN_1.CNN_1, "best_model_CNN1.pth", demo_loader)
+print("Predictions from CNN_1:", predictions_CNN1)
+predictions_CNN2 = predict_class_of_image(CNN_2.CNN_2, "best_model_CNN2.pth", demo_loader)
+print("Predictions from CNN_2:", predictions_CNN2)
+predictions_CNN3 = predict_class_of_image(CNN_3.CNN_3, "best_model_CNN3.pth", demo_loader)
+print("Predictions from CNN_3:", predictions_CNN3)
