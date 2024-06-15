@@ -15,6 +15,8 @@ Contents:
 
 "data_visualization.py": This file includes the functions responsible for calculating and plotting the pixel intensity for each class on a histogram by calling 3 different functions. These histograms depict the pixel density ranging from 0-255 for each class.
 
+"best_model_CNN1.pth" and "best_model_CNN2.pth" are the saved models of each CNN respectively. "best_model_CNN3.pth" exceeded GitHubs maximum file size of 100Mb so is not in this repository. To acces "best_model_CNN3.pth" please follow the link: https://drive.google.com/file/d/1UdCiwvEESQyjomHLUZDM0JjdNR3XesRx/view?usp=drive_link
+
 Purpose of the File:
 data_cleaning.py: 
 import_images(folder_path): Imports images from the folder.
