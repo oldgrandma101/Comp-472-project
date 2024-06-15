@@ -12,62 +12,83 @@ class CNN_3(nn.Module):
 
             #in_channels = 1 because our images are grayscale
             #layer 1 has 32 kernels
-            nn.Conv2d(in_channels=3, out_channels=32, kernel_size=5, padding=2, stride=1),
+            nn.Conv2d(in_channels=3, out_channels=32, kernel_size=3, padding=1, stride=1),
             nn.BatchNorm2d(32),
             nn.LeakyReLU(inplace=True),
 
             #layer 2 has 32 kernels
-            nn.Conv2d(in_channels=32, out_channels=32, kernel_size=5, padding=2, stride=1),
+            nn.Conv2d(in_channels=32, out_channels=32, kernel_size=3, padding=1, stride=1),
             nn.BatchNorm2d(32),
             nn.LeakyReLU(inplace=True),
             nn.MaxPool2d(kernel_size=2,stride=2),
 
 
             #layer 3 has 64 kernels
-            nn.Conv2d(in_channels=32, out_channels=64, kernel_size=5, padding=2, stride=1),
+            nn.Conv2d(in_channels=32, out_channels=64, kernel_size=3, padding=1, stride=1),
             nn.BatchNorm2d(64),
             nn.LeakyReLU(inplace=True),
 
             #layer 4 has 64 kernels
-            nn.Conv2d(in_channels=64, out_channels=64, kernel_size=5, padding=2, stride=1),
+            nn.Conv2d(in_channels=64, out_channels=64, kernel_size=3, padding=1, stride=1),
             nn.BatchNorm2d(64),
             nn.LeakyReLU(inplace=True),
             nn.MaxPool2d(kernel_size=2, stride=2),
 
             #layer 5 has 64 kernels
-            nn.Conv2d(in_channels=64, out_channels=64, kernel_size=5, padding=2, stride=1),
+            nn.Conv2d(in_channels=64, out_channels=64, kernel_size=3, padding=1, stride=1),
             nn.BatchNorm2d(64),
             nn.LeakyReLU(inplace=True),
 
             #layer 6 has 64 kernels
-            nn.Conv2d(in_channels=64, out_channels=64, kernel_size=5, padding=2, stride=1),
+            nn.Conv2d(in_channels=64, out_channels=64, kernel_size=3, padding=1, stride=1),
             nn.BatchNorm2d(64),
             nn.LeakyReLU(inplace=True),
             nn.MaxPool2d(kernel_size=2, stride=2),
 
             #layer 7 has 128 kernels
-            nn.Conv2d(in_channels=64, out_channels=128, kernel_size=5, padding=2, stride=1),
+            nn.Conv2d(in_channels=64, out_channels=128, kernel_size=3, padding=1, stride=1),
             nn.BatchNorm2d(128),
             nn.LeakyReLU(inplace=True),
 
             #layer 8 has 128 kernels
-            nn.Conv2d(in_channels=128, out_channels=128, kernel_size=5, padding=2, stride=1),
+            nn.Conv2d(in_channels=128, out_channels=128, kernel_size=3, padding=1, stride=1),
             nn.BatchNorm2d(128),
             nn.LeakyReLU(inplace=True),
             nn.MaxPool2d(kernel_size=2, stride=2),
 
             #layer 9 has 256 kernels
-            nn.Conv2d(in_channels=128, out_channels=256, kernel_size=5, padding=2, stride=1),
+            nn.Conv2d(in_channels=128, out_channels=256, kernel_size=3, padding=1, stride=1),
             nn.BatchNorm2d(256),
             nn.LeakyReLU(inplace=True),
 
             #layer 10 has 256 kernels
-            nn.Conv2d(in_channels=256, out_channels=256, kernel_size=5, padding=2, stride=1),
+            nn.Conv2d(in_channels=256, out_channels=256, kernel_size=3, padding=1, stride=1),
             nn.BatchNorm2d(256),
             nn.LeakyReLU(inplace=True),
             nn.MaxPool2d(kernel_size=2,stride=2),
 
+            #layer 11 has 512 kernels
+            nn.Conv2d(in_channels=256, out_channels=512, kernel_size=3, padding=1, stride=1),
+            nn.BatchNorm2d(512),
+            nn.LeakyReLU(inplace=True),
 
+            #layer 12 has 512 kernels
+            nn.Conv2d(in_channels=512, out_channels=512, kernel_size=3, padding=1, stride=1),
+            nn.BatchNorm2d(512),
+            nn.LeakyReLU(inplace=True),
+            nn.MaxPool2d(kernel_size=2, stride=2),
+
+
+            #layer 13 has 1024 kernels
+            nn.Conv2d(in_channels=512, out_channels=1024, kernel_size=3, padding=1, stride=1),
+            nn.BatchNorm2d(1024),
+            nn.LeakyReLU(inplace=True),
+
+            #layer 14 has 1024 kernels
+            nn.Conv2d(in_channels=1024, out_channels=1024, kernel_size=3, padding=1, stride=1),
+            nn.BatchNorm2d(1024),
+            nn.LeakyReLU(inplace=True),
+            nn.MaxPool2d(kernel_size=2, stride=2)
 
 
 
