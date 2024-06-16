@@ -95,10 +95,10 @@ Dependencies:
 
 Language: Python
 
-matplotlib
-numpy
-PIL
-shutil
-PyTorch
-torchvision
+matplotlib,
+numpy,
+PIL,
+shutil,
+PyTorch,
+torchvision,
 scikit-learn
