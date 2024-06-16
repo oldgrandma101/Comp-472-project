@@ -95,7 +95,7 @@ optimizer_2 = torch.optim.Adam(model_2.parameters(), lr=learning_rate)
 model_3 = CNN_3.CNN_3()
 optimizer_3 = torch.optim.Adam(model_3.parameters(), lr=learning_rate)  # define our 3 models with their optimizers respectively so that we can now store the best trained model for each
 
-#the lines underneath this comment have been commented out so that the training file is ran everytime
+#the lines underneath this comment have been commented out so that the training file isn't ran everytime
 #we import a function form this file in other files
 
 # training(model_1, train_loader, validation_loader, criterion, optimizer_1, num_epochs, "best_model_CNN1.pth")
