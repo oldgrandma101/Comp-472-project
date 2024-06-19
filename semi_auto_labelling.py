@@ -82,4 +82,4 @@ print(f"{emotion} Images have been moved to the new folders. Change the emotion 
 print("for example, if you want to label all the images in the final_focused folder, make line 11 look like:  ")
 print('emotion = "focused"')
 print("ITS IMPORTANT TO GO THROUGH THE FOLDERS IN THE SAME ORDER AS THE STRUCTURE IN OUR PROJECT, IF YOU DON'T IT WILL MESS UP OUR PREDICTIONS")
-print("SO DO ANGRY, THEN FOCUSED, THEN HAPPY AND THE NEUTRAL")
+print("SO DO ANGRY, THEN FOCUSED, THEN HAPPY AND THEN NEUTRAL")
