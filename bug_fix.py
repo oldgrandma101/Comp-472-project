@@ -8,15 +8,17 @@ from matplotlib import pyplot as plt
 #there are three classes for age: y=young, m=middle aged, s=senior
 
 
-emotion = "neutral"
+emotion = "focused"
 
-gender_options = ['m', 'f', 'o']
-age_options = ['y', 'm', 's']
+gender_options = ['m', 'f', 'o', 'q']
+age_options = ['y', 'z', 's']
 
 gender = ""
 age = ""
 
-source_folder = f"./Final_clean_dataset/final_{emotion}"
+middleaged = "middleaged"
+
+source_folder = f"./part3_male/{emotion}_m"
 
 print("###################################################")
 print("###################################################")
@@ -33,47 +35,46 @@ print("###################################################")
 for filename in os.listdir(source_folder):
     if filename.endswith(".jpg") :
         image_path = os.path.join(source_folder, filename)
-
+        print(image_path)
         img = Image.open(image_path)
+
+        if os.path.exists(f"./p3_middleaged/{emotion}_middleaged/{filename}"):
+            print(f"Image {filename} already in middle aged folder.")
+            continue
 
         #This will display the image automatically on your computer
         plt.imshow(img)
         plt.axis('off')
         plt.show()
 
-        print(f"filename: {image_path}")
-
         #this is where you classify the gender of the image that popped up and the age
-        gender = input("Enter gender for this image (m, f, o): ").lower()
+        gender = input("Enter gender for this image (m, f, o, q): ").lower()
+
         while gender not in gender_options:
-            gender = input("Invalid input. Enter gender for this image (m, f, o): ").lower()
+            gender = input("Invalid input. Enter gender for this image (m, f, o, q): ").lower()
 
-        age = input("Enter age group for this image (y, m, s): ").lower()
+        if gender == "q":
+            continue
+
+        age = input("Enter age group for this image (y, z, s): ").lower()
         while age not in age_options:
-            age = input("Invalid input. Enter age group for this image (y, m, s): ").lower()
+            age = input("Invalid input. Enter age group for this image (y, z, s): ").lower()
 
-        #this chooses the path to save the image to based on which class it is
-        dest_gender_folder = f'./p3_{gender}/{emotion}_{gender}'
-        dest_age_folder = f'./p3_{age}/{emotion}_{age}'
+        if age == "z":
+            dest_age_folder = f'./p3_{middleaged}/{emotion}_{middleaged}'
 
-        os.makedirs(dest_gender_folder, exist_ok=True)
-        os.makedirs(dest_age_folder, exist_ok=True)
+            os.makedirs(dest_age_folder, exist_ok=True)
 
-        dest_gender_path = os.path.join(dest_gender_folder, filename)
-        dest_age_path = os.path.join(dest_age_folder, filename)
+            dest_age_path = os.path.join(dest_age_folder, filename)
 
-        #this makes sure that the image hasn't already been classified
-        if not os.path.exists(dest_gender_path):
-            img.save(dest_gender_path)
-            print(f"Image {filename} moved to {dest_gender_folder}.")
-        else:
-            print(f"Image {filename} already exists in {dest_gender_folder}.")
+            if not os.path.exists(dest_age_path):
+                img.save(dest_age_path)
+                print(f"Image {filename} moved to {dest_age_folder}.")
+            else:
+                print(f"Image {filename} already exists in {dest_age_folder}.")
 
-        if not os.path.exists(dest_age_path):
-            img.save(dest_age_path)
-            print(f"Image {filename} moved to {dest_age_folder}.")
-        else:
-            print(f"Image {filename} already exists in {dest_age_folder}.")
+        if gender == "f":
+            os.remove(image_path)
 
         img.close()
 

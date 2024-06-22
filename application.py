@@ -1,11 +1,13 @@
+import os
 
 import torch
+from PIL import Image
 from torchvision import datasets, transforms
 from torch.utils.data import DataLoader, random_split
 import CNN_1
 import CNN_2
 import CNN_3
-
+from matplotlib import pyplot as plt
 
 transform = transforms.Compose([transforms.Resize((128, 128)), transforms.ToTensor(), transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
