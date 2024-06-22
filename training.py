@@ -5,13 +5,23 @@ from torchvision import datasets, transforms
 import CNN_1
 import CNN_2
 import CNN_3
+from torchvision.datasets import ImageFolder
+
+#extends ImageFolder so that we can process the file names too, added for part 3 of the project, used ChatGPT for this class
+class ImageFolderWithPaths(ImageFolder):
+    def __getitem__(self, index):
+        original_tuple = super(ImageFolderWithPaths, self).__getitem__(index)
+        path = self.imgs[index][0]
+        return original_tuple + (path,)
+
+
 
 num_epochs = 20
 learning_rate = 0.0001
 
 transform = transforms.Compose([transforms.Resize((128, 128)), transforms.ToTensor(), transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])  # from ChatGPT
 
-dataset = datasets.ImageFolder(root="./Final_clean_dataset", transform=transform)  # apply the transform to our dataset and load it
+dataset = ImageFolderWithPaths(root="./Final_clean_dataset", transform=transform)  # apply the transform to our dataset and load it
 
 # 70% - 15% - 15% split for train/val/test, distributed randomly
 #train_dataset, validation_dataset, test_dataset = random_split(dataset, [int(0.7*len(dataset)), int(0.15*len(dataset)), int(0.15*len(dataset))])
