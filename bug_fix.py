@@ -8,7 +8,7 @@ from matplotlib import pyplot as plt
 #there are three classes for age: y=young, m=middle aged, s=senior
 
 
-emotion = "focused"
+emotion = "neutral"
 
 gender_options = ['m', 'f', 'o', 'q']
 age_options = ['y', 'z', 's']
