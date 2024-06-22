@@ -8,7 +8,7 @@ from matplotlib import pyplot as plt
 #there are three classes for age: y=young, m=middle aged, s=senior
 
 
-emotion = "angry"
+emotion = "neutral"
 
 gender_options = ['m', 'f', 'o']
 age_options = ['y', 'm', 's']
@@ -41,7 +41,7 @@ for filename in os.listdir(source_folder):
         plt.axis('off')
         plt.show()
 
-        print(f"filename: {filename}")
+        print(f"filename: {image_path}")
 
         #this is where you classify the gender of the image that popped up and the age
         gender = input("Enter gender for this image (m, f, o): ").lower()
