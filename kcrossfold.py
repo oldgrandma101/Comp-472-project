@@ -11,9 +11,7 @@ import numpy as np
 
 # external file imports
 
-import CNN_3
-import CNN_2
-import CNN_1
+import CNN_3  # the best model, so only using this one for kfold cross validation
 from training import ImageFolderWithPaths
 from updated_training import training
 from updated_evaluation import evaluate_model
@@ -34,7 +32,7 @@ kfolds = 10  # requested 10 splits for the k-fold cross validation
 transform = transforms.Compose([transforms.Resize((128, 128)), transforms.ToTensor(), transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
 # import dataset & apply transform
-dataset = ImageFolderWithPaths(root="./Final_clean_dataset", transform=transform)
+dataset = ImageFolderWithPaths(root="./part3_final_dataset", transform=transform)
 
 # kfold initialization, 10 splits, shuffled to avoid manual, static split of the data
 
@@ -42,38 +40,16 @@ kf = KFold(n_splits=kfolds, shuffle=True, random_state=85)  # random_state saves
 
 # initialize empty arrays to store the values returned by the evaluation of each model
 
-# model 1 values
+# model evaluation values
 
-model1_confs = []  # confusion matrices
-model1_accuracies = []
-model1_macro_recalls = []
-model1_macro_precisions = []
-model1_macro_f1s = []
-model1_micro_recalls = []
-model1_micro_precisions = []
-model1_micro_f1s = []
-
-# model 2 values
-
-model2_confs = []  # confusion matrices
-model2_accuracies = []
-model2_macro_recalls = []
-model2_macro_precisions = []
-model2_macro_f1s = []
-model2_micro_recalls = []
-model2_micro_precisions = []
-model2_micro_f1s = []
-
-# model 3 values
-
-model3_confs = []  # confusion matrices
-model3_accuracies = []
-model3_macro_recalls = []
-model3_macro_precisions = []
-model3_macro_f1s = []
-model3_micro_recalls = []
-model3_micro_precisions = []
-model3_micro_f1s = []
+confs = []  # confusion matrices
+accuracies = []
+macro_recalls = []
+macro_precisions = []
+macro_f1s = []
+micro_recalls = []
+micro_precisions = []
+micro_f1s = []
 
 # kfold implementation
 
@@ -110,88 +86,36 @@ for fold, (train_fold, test_fold) in enumerate(kf.split(dataset)):
 
     criterion = torch.nn.CrossEntropyLoss()  # all the models can share the same criterion
 
-    # each model gets its own optimizer
     # send the model to the device to enable GPU acceleration
 
-    model_1 = CNN_1.CNN_1().to(device)
-    optimizer_1 = torch.optim.Adam(model_1.parameters(), lr=lr)
+    model = CNN_3.CNN_3().to(device)
+    optimizer = torch.optim.Adam(model.parameters(), lr=lr)
 
-    model_2 = CNN_2.CNN_2().to(device)
-    optimizer_2 = torch.optim.Adam(model_2.parameters(), lr=lr)
+    # training the model using the training data set
 
-    model_3 = CNN_3.CNN_3().to(device)
-    optimizer_3 = torch.optim.Adam(model_3.parameters(), lr=lr)
-
-    # training each model using the training data set
-
-    training(model_1, "CNN_1", train_loader, val_loader, criterion, optimizer_1, epochs, device)
-    training(model_2, "CNN_2", train_loader, val_loader, criterion, optimizer_2, epochs, device)
-    training(model_3, "CNN_3", train_loader, val_loader, criterion, optimizer_3, epochs, device)
+    training(model, train_loader, val_loader, criterion, optimizer, epochs, device)
 
     # evaluate each model's performance using the test data set
 
-    # model 1 evaluation
-
-    conf_matrix, accuracy, macro_recall, macro_precision, macro_f1, micro_precision, micro_recall, micro_f1 = evaluate_model(model_1, test_loader, device)
-    model1_confs.append(conf_matrix)
-    model1_accuracies.append(accuracy)
-    model1_macro_recalls.append(macro_recall)
-    model1_macro_precisions.append(macro_precision)
-    model1_macro_f1s.append(macro_f1)
-    model1_micro_recalls.append(micro_recall)
-    model1_micro_precisions.append(micro_precision)
-    model1_micro_f1s.append(micro_f1)
-
-    # model 2 evaluation
-
-    conf_matrix, accuracy, macro_recall, macro_precision, macro_f1, micro_precision, micro_recall, micro_f1 = evaluate_model(model_2, test_loader, device)
-    model2_confs.append(conf_matrix)
-    model2_accuracies.append(accuracy)
-    model2_macro_recalls.append(macro_recall)
-    model2_macro_precisions.append(macro_precision)
-    model2_macro_f1s.append(macro_f1)
-    model2_micro_recalls.append(micro_recall)
-    model2_micro_precisions.append(micro_precision)
-    model2_micro_f1s.append(micro_f1)
-
-    # model 3 evaluation
-
-    conf_matrix, accuracy, macro_recall, macro_precision, macro_f1, micro_precision, micro_recall, micro_f1 = evaluate_model(model_3, test_loader, device)
-    model3_confs.append(conf_matrix)
-    model3_accuracies.append(accuracy)
-    model3_macro_recalls.append(macro_recall)
-    model3_macro_precisions.append(macro_precision)
-    model3_macro_f1s.append(macro_f1)
-    model3_micro_recalls.append(micro_recall)
-    model3_micro_precisions.append(micro_precision)
-    model3_micro_f1s.append(micro_f1)
+    conf_matrix, accuracy, macro_recall, macro_precision, macro_f1, micro_precision, micro_recall, micro_f1 = evaluate_model(model, test_loader, device)
+    confs.append(conf_matrix)
+    accuracies.append(accuracy)
+    macro_recalls.append(macro_recall)
+    macro_precisions.append(macro_precision)
+    macro_f1s.append(macro_f1)
+    micro_recalls.append(micro_recall)
+    micro_precisions.append(micro_precision)
+    micro_f1s.append(micro_f1)
 
 # print results
 
 print("\nEach value in the array represents folds 1 through 10 respectively.\n")
-print("\nCNN_1 Evaluation:\n")
-print(f"Accuracy: {np.mean(model1_accuracies)} ± {np.std(model1_accuracies)}")
-print(f"Macro Recall: {np.mean(model1_macro_recalls)} ± {np.std(model1_macro_recalls)}")
-print(f"Macro Precision: {np.mean(model1_macro_precisions)} ± {np.std(model1_macro_precisions)}")
-print(f"Macro F1: {np.mean(model1_macro_f1s)} ± {np.std(model1_macro_f1s)}")
-print(f"Macro Recall: {np.mean(model1_micro_recalls)} ± {np.std(model1_micro_recalls)}")
-print(f"Macro Precision: {np.mean(model1_micro_precisions)} ± {np.std(model1_micro_precisions)}")
-print(f"Macro F1: {np.mean(model1_micro_f1s)} ± {np.std(model1_micro_f1s)}")
+print("\nCNN_3 (Main Model) Evaluation:\n")
 
-print("\nCNN_2 Evaluation:\n")
-print(f"Accuracy: {np.mean(model2_accuracies)} ± {np.std(model2_accuracies)}")
-print(f"Macro Recall: {np.mean(model2_macro_recalls)} ± {np.std(model2_macro_recalls)}")
-print(f"Macro Precision: {np.mean(model2_macro_precisions)} ± {np.std(model2_macro_precisions)}")
-print(f"Macro F1: {np.mean(model2_macro_f1s)} ± {np.std(model2_macro_f1s)}")
-print(f"Macro Recall: {np.mean(model2_micro_recalls)} ± {np.std(model2_micro_recalls)}")
-print(f"Macro Precision: {np.mean(model2_micro_precisions)} ± {np.std(model2_micro_precisions)}")
-print(f"Macro F1: {np.mean(model2_micro_f1s)} ± {np.std(model2_micro_f1s)}")
-
-print("\nCNN_3 Evaluation:\n")
-print(f"Accuracy: {np.mean(model3_accuracies)} ± {np.std(model3_accuracies)}")
-print(f"Macro Recall: {np.mean(model3_macro_recalls)} ± {np.std(model3_macro_recalls)}")
-print(f"Macro Precision: {np.mean(model3_macro_precisions)} ± {np.std(model3_macro_precisions)}")
-print(f"Macro F1: {np.mean(model3_macro_f1s)} ± {np.std(model3_macro_f1s)}")
-print(f"Macro Recall: {np.mean(model3_micro_recalls)} ± {np.std(model3_micro_recalls)}")
-print(f"Macro Precision: {np.mean(model3_micro_precisions)} ± {np.std(model3_micro_precisions)}")
-print(f"Macro F1: {np.mean(model3_micro_f1s)} ± {np.std(model3_micro_f1s)}")
+print(f"Accuracy: {np.mean(accuracies)} ± {np.std(accuracies)}")
+print(f"Macro Recall: {np.mean(macro_recalls)} ± {np.std(macro_recalls)}")
+print(f"Macro Precision: {np.mean(macro_precisions)} ± {np.std(macro_precisions)}")
+print(f"Macro F1: {np.mean(macro_f1s)} ± {np.std(macro_f1s)}")
+print(f"Macro Recall: {np.mean(micro_recalls)} ± {np.std(micro_recalls)}")
+print(f"Macro Precision: {np.mean(micro_precisions)} ± {np.std(micro_precisions)}")
+print(f"Macro F1: {np.mean(micro_f1s)} ± {np.std(micro_f1s)}")

@@ -2,12 +2,10 @@ import torch
 import numpy
 
 
-def training(model, model_name, train_loader, validation_loader, criterion, optimizer, num_epochs, device):
+def training(model, train_loader, validation_loader, criterion, optimizer, num_epochs, device):
     # copied, pasted and edited from training.py
     # only changes include adding device & related lines (to(device)) and adjusting the printing of the training
     # accuracy for each epoch (accounted for batches unlike project 1)
-
-    print(f"Training {model_name}: \n")
 
     loss_list = []
     best_loss = float('inf')  # keeps track of the best validation loss for the model
@@ -19,7 +17,7 @@ def training(model, model_name, train_loader, validation_loader, criterion, opti
         training_loss = 0  # reset to 0 for each epoch
         acc_list = []  # reset accuracy list to 0 for each epoch
 
-        for i, (images, labels) in enumerate(train_loader):
+        for i, (images, labels, _) in enumerate(train_loader):
             images, labels = images.to(device), labels.to(device)  # send images/labels to selected device
 
             # fwd pass
@@ -45,7 +43,7 @@ def training(model, model_name, train_loader, validation_loader, criterion, opti
         model.eval()  # switch model to evaluation mode
 
         with torch.no_grad():  # disable gradient changes for validation
-            for i, (images, labels) in enumerate(validation_loader):
+            for i, (images, labels, _) in enumerate(validation_loader):
                 images, labels = images.to(device), labels.to(device)  # send images/labels to selected device
                 outputs = model(images)
                 loss = criterion(outputs, labels)
@@ -63,6 +61,6 @@ def training(model, model_name, train_loader, validation_loader, criterion, opti
             patience_count = 0  # reset patience if a new best model is found
         else:
             patience_count += 1
-            if patience_count >= 6:  # patience of 6
+            if patience_count >= 3:  # patience of 3
                 print('Early stopping mechanism activated to avoid over fitting of the model.')
                 break
