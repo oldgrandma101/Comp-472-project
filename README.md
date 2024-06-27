@@ -27,6 +27,8 @@ The project aims to develop a system that uses deep learning convolutional neura
 
 "best_model_CNN1.pth" and "best_model_CNN2.pth" are the saved models of each CNN respectively. "best_model_CNN3.pth" exceeded GitHubs maximum file size of 100Mb so is not in this repository. To acces "best_model_CNN3.pth" please follow the link: https://drive.google.com/file/d/1UdCiwvEESQyjomHLUZDM0JjdNR3XesRx/view?usp=drive_link
 
+"part3_model.pth" exceeded GitHubs maximum file size of 100Mb so is not in this repository. To access "part3_model.pth" please follow the link: https://drive.google.com/file/d/18rKBdaeYMoVZsKIp2lKOYBRqXlfDvL5v/view?usp=drive_link
+
 **Purpose of the File:**
 data_cleaning.py: 
 import_images(folder_path): Imports images from the folder.
