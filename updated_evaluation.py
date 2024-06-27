@@ -13,7 +13,7 @@ def evaluate_model(model, data_loader, device):
 
     with torch.no_grad():  # disable gradient calculation since this is evaluation
         for data in data_loader:
-            images, labels = data
+            images, labels, _ = data
             images, labels = images.to(device), labels.to(device)  # added this line to send the images/labels to the selected device
             outputs = model(images)  # forward pass to get preds
             _, preds = torch.max(outputs.data, 1)  # get pred labels
