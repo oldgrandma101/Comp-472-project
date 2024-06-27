@@ -35,7 +35,7 @@ def evaluate_model(model, data_loader):
 
     with torch.no_grad():
         for data in data_loader:
-            images, labels = data
+            images, labels, _ = data
             outputs = model(images)
             _, preds = torch.max(outputs.data, 1)
             all_preds.extend(preds.numpy())
