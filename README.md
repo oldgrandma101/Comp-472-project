@@ -29,6 +29,20 @@ The project aims to develop a system that uses deep learning convolutional neura
 
 "part3_model.pth" exceeded GitHubs maximum file size of 100Mb so is not in this repository. To access "part3_model.pth" please follow the link: https://drive.google.com/file/d/18rKBdaeYMoVZsKIp2lKOYBRqXlfDvL5v/view?usp=drive_link
 
+"bias_evaluation.py": This file assesses potential bias in AI models by analyzing how the models perform across different demographic groups.
+
+"semi_auto_labelling.py": This code helps label images by displaying them and asking users to assign them gender and age categories.
+
+"bug_fix.py": In semi_auto_labelling.py we have found that if the picture shows a man or a middle-aged person, entering "m" will put the picture in the same folder. So making code changes through the bug fix.py file to fix errors.
+
+"part3_cleaning.py": This code aims to enhance and process the existing image data set, and generate new image data set to improve the diversity and robustness of model training by adjusting image size, brightness, color and other characteristics.
+
+"kcrossfold.py": This code is designed to evaluate the CNN model through K-fold cross-validation
+
+"updated_evaluation.py": This code is to evaluating the performance of the model, increasing the speed of evaluation by running on the GPU.
+
+"updated_training.py": The model is trained using Gpus and includes an early stop mechanism to avoid overfitting.
+
 **Purpose of the File:**
 data_cleaning.py: 
 import_images(folder_path): Imports images from the folder.
@@ -58,6 +72,27 @@ and save the model with the least validation losses.
 evaluation.py: 
 evaluate_model: evaluates the model and calculates various performance values
 
+bias_evaluation.py:
+get_all_filenames_in_folder(folder_path): Recursively retrieves all filenames in the specified folder
+evaluate_model(model, data_loader, target_filenames): Evaluates the model on the specified data loader and the target file name. Calculate various performance metrics such as confusion matrix, accuracy, precision, recall, and F1-scores.
+
+semi_auto_labelling.py:
+Three gender categories were used: male (m), female (f), other (o), and three age categories: young (y), middle-aged (m), and elderly (s). And users can modify the emotion variable in the script to set the "emotion" category that is currently being processed. Then, based on user input, save the image to the appropriate destination folder.
+
+bug_fix.py:
+Updated the code in semi_auto_labelling.py to fix that if the picture shows a middle-aged person or a man, the user will type 'm', causing the system to put the picture showing a middle-aged person or a man in the same folder.
+
+part3_cleaning.py:
+The script processes image folders of different categories and moods in turn, and importing, processing, and exporting enhanced images.
+rename_images(folder_path): Renames all image files in the specified folder
+import_images(folder_path): Import all image files in the specified folder and return a list of image objects
+clean_images(list_of_dirty_pictures): Image processing, including resizing, increasing brightness, and converting to grayscale images
+
+kcrossfold.py: Ensuring the robustness and stability of the model under different data splitting and evaluating the model performance in 10-fold cross-validation.
+
+updated_evaluation.py: Calculating multiple performance metrics to fully evaluate the model's performance.
+
+updated_evaluation.py: Calculating the loss and accuracy on the training set and verification set, and output the information.
 
 **Excuting the code:**
 Data Cleaning
@@ -83,7 +118,7 @@ Training three models
 2. Define Training Function
 3. Train Models
 
-Test three models
+Testing three models
 1. Import PyTorch, the test data loader, and models
 2. Define Model Testing Function
 3. Test models
@@ -93,7 +128,36 @@ Evaluation
 2. Define Evaluation Function (evaluate_model)
 3. Evaluate Models
 
-Dependencies:
+Biased evaluation
+1. Prepare the data and organize the data sets into the corresponding folders for each demographic group
+2. Run the file for bias assessment
+
+Labelling images
+1. Excuting the code
+2. Starting the labeling process. The script will display each image in turn and prompt the user to enter a gender and age category.
+
+Fix the code in semi auto labelling.py
+1. Excuting the code, and the script will display each image in turn
+2. If the picture shows a non-middle-aged person, the user needs to enter 'q' to skip, if the picture shows a middle-aged person, the user needs to enter m or f according to the gender of the person, and then press 'Enter' to enter 'z', then the system will put the picture in a new folder.
+
+Data cleaning and enhancement
+1. Importing and process images
+2. Exporting the enhanced image, and converting the image to RGB format
+
+K-fold Cross-validation
+1. Setting up hyperparameters and data transformations. Importing data sets and initializing K-fold cross-validation
+2. Training the model and evaluating performance using test sets
+3. Printing the mean and standard deviation of each evaluation measure
+
+Updated model evaluation
+1. Preparing data to make sure the test data set is loaded into the data loader, and the model is loaded and ready for evaluation.
+2. Excuting the code evaluate the model.
+
+Updated model training
+1. Preparing data to make sure the training and validation datasets are loaded into the data loader, and the model is initialized and ready for training.
+2. Call the 'training' function to train the model and monitor its performance on the training and validation sets. 
+
+**Dependencies:**
 
 Language: Python
 
