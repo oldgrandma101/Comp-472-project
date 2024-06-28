@@ -39,6 +39,10 @@ The project aims to develop a system that uses deep learning convolutional neura
 
 "kcrossfold.py": This code is designed to evaluate the CNN model through K-fold cross-validation
 
+"updated_evaluation.py": This code is to evaluating the performance of the model, increasing the speed of evaluation by running on the GPU.
+
+"updated_training.py": The model is trained using Gpus and includes an early stop mechanism to avoid overfitting.
+
 **Purpose of the File:**
 data_cleaning.py: 
 import_images(folder_path): Imports images from the folder.
@@ -85,6 +89,10 @@ import_images(folder_path): Import all image files in the specified folder and r
 clean_images(list_of_dirty_pictures): Image processing, including resizing, increasing brightness, and converting to grayscale images
 
 kcrossfold.py: Ensuring the robustness and stability of the model under different data splitting and evaluating the model performance in 10-fold cross-validation.
+
+updated_evaluation.py: Calculating multiple performance metrics to fully evaluate the model's performance.
+
+updated_evaluation.py: Calculating the loss and accuracy on the training set and verification set, and output the information.
 
 **Excuting the code:**
 Data Cleaning
@@ -140,6 +148,14 @@ K-fold Cross-validation
 1. Setting up hyperparameters and data transformations. Importing data sets and initializing K-fold cross-validation
 2. Training the model and evaluating performance using test sets
 3. Printing the mean and standard deviation of each evaluation measure
+
+Updated model evaluation
+1. Preparing data to make sure the test data set is loaded into the data loader, and the model is loaded and ready for evaluation.
+2. Excuting the code evaluate the model.
+
+Updated model training
+1. Preparing data to make sure the training and validation datasets are loaded into the data loader, and the model is initialized and ready for training.
+2. Call the 'training' function to train the model and monitor its performance on the training and validation sets. 
 
 **Dependencies:**
 
