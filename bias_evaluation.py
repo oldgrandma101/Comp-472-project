@@ -5,6 +5,7 @@ from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, r
 import matplotlib.pyplot as plt
 from training import test_loader
 import os
+from training import part3_test_loader
 
 
 # changed main model from CNN_1 in part 2 to CNN_3 in part 3 becuase it performed better
@@ -167,7 +168,7 @@ def evaluate_model(model, data_loader, target_filenames):
 ###############################################################
 #EAVLUATION ON PART 3 MODEL
 young_target_filenames = get_all_filenames_in_folder("./part3_young")
-young_conf_matrix, young_accuracy, young_macro_recall, young_macro_precision, young_macro_f1, young_micro_precision, young_micro_recall, young_micro_f1 = evaluate_model(part3_model, test_loader, young_target_filenames)
+young_conf_matrix, young_accuracy, young_macro_recall, young_macro_precision, young_macro_f1, young_micro_precision, young_micro_recall, young_micro_f1 = evaluate_model(part3_model, part3_test_loader, young_target_filenames)
 
 print(young_conf_matrix)
 
@@ -182,7 +183,7 @@ print("young_micro_f1: ", young_micro_f1)
 
 # # evaluate model on part3_middleaged
 middleaged_target_filenames = get_all_filenames_in_folder("./part3_middleaged")
-middleaged_conf_matrix, middleaged_accuracy, middleaged_macro_recall, middleaged_macro_precision, middleaged_macro_f1, middleaged_micro_precision, middleaged_micro_recall, middleaged_micro_f1 = evaluate_model(part3_model, test_loader, middleaged_target_filenames)
+middleaged_conf_matrix, middleaged_accuracy, middleaged_macro_recall, middleaged_macro_precision, middleaged_macro_f1, middleaged_micro_precision, middleaged_micro_recall, middleaged_micro_f1 = evaluate_model(part3_model, part3_test_loader, middleaged_target_filenames)
 
 print(middleaged_conf_matrix)
 
@@ -196,7 +197,7 @@ print("middleaged_micro_f1: ", middleaged_micro_f1)
 
 # eva;uate model on part3_senior
 senior_target_filenames = get_all_filenames_in_folder("./part3_senior")
-senior_conf_matrix, senior_accuracy, senior_macro_recall, senior_macro_precision, senior_macro_f1, senior_micro_precision, senior_micro_recall, senior_micro_f1 = evaluate_model(part3_model, test_loader, senior_target_filenames)
+senior_conf_matrix, senior_accuracy, senior_macro_recall, senior_macro_precision, senior_macro_f1, senior_micro_precision, senior_micro_recall, senior_micro_f1 = evaluate_model(part3_model, part3_test_loader, senior_target_filenames)
 
 print(senior_conf_matrix)
 
@@ -210,7 +211,7 @@ print("senior_micro_f1: ", senior_micro_f1)
 
 #evaluate model on part3_male
 male_target_filenames = get_all_filenames_in_folder("./part3_male")
-male_conf_matrix, male_accuracy, male_macro_recall, male_macro_precision, male_macro_f1, male_micro_precision, male_micro_recall, male_micro_f1 = evaluate_model(part3_model, test_loader, male_target_filenames)
+male_conf_matrix, male_accuracy, male_macro_recall, male_macro_precision, male_macro_f1, male_micro_precision, male_micro_recall, male_micro_f1 = evaluate_model(part3_model, part3_test_loader, male_target_filenames)
 
 print(male_conf_matrix)
 
@@ -224,7 +225,7 @@ print("male_micro_f1: ", male_micro_f1)
 
 #evaluate model on part3_female
 female_target_filenames = get_all_filenames_in_folder("./part3_female")
-female_conf_matrix, female_accuracy, female_macro_recall, female_macro_precision, female_macro_f1, female_micro_precision, female_micro_recall, female_micro_f1 = evaluate_model(part3_model, test_loader, female_target_filenames)
+female_conf_matrix, female_accuracy, female_macro_recall, female_macro_precision, female_macro_f1, female_micro_precision, female_micro_recall, female_micro_f1 = evaluate_model(part3_model, part3_test_loader, female_target_filenames)
 
 print(female_conf_matrix)
 
@@ -238,7 +239,7 @@ print("female_micro_f1: ", female_micro_f1)
 
 #evaluate model on part3_other
 other_target_filenames = get_all_filenames_in_folder("./part3_other")
-other_conf_matrix, other_accuracy, other_macro_recall, other_macro_precision, other_macro_f1, other_micro_precision, other_micro_recall, other_micro_f1 = evaluate_model(part3_model, test_loader, other_target_filenames)
+other_conf_matrix, other_accuracy, other_macro_recall, other_macro_precision, other_macro_f1, other_micro_precision, other_micro_recall, other_micro_f1 = evaluate_model(part3_model, part3_test_loader, other_target_filenames)
 
 print(other_conf_matrix)
 
