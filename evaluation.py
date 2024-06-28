@@ -6,7 +6,7 @@ import CNN_3
 from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, recall_score, f1_score,ConfusionMatrixDisplay
 import matplotlib.pyplot as plt
 from training import test_loader
-
+from training import  part3_test_loader
 
 
 
@@ -104,7 +104,7 @@ def evaluate_model(model, data_loader):
 
 ######################################
 #evaluation for part 3
-part3_conf_matrix, part3_accuracy, part3_macro_recall, part3_macro_precision, part3_macro_f1, part3_micro_precision, part3_micro_recall, part3_micro_f1 = evaluate_model(part3_model,test_loader)
+part3_conf_matrix, part3_accuracy, part3_macro_recall, part3_macro_precision, part3_macro_f1, part3_micro_precision, part3_micro_recall, part3_micro_f1 = evaluate_model(part3_model,part3_test_loader)
 
 print(part3_conf_matrix)
 

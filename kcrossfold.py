@@ -18,7 +18,8 @@ from updated_evaluation import evaluate_model
 
 # GPU acceleration
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")  # use the GPU if it is available for faster runtime (from ChatGPT)
+device = torch.device("mps" if torch.backends.mps.is_available() else "cuda" if torch.cuda.is_available() else "cpu")
+ # use the GPU if it is available for faster runtime (from ChatGPT)
 
 # training hyperparameters
 
